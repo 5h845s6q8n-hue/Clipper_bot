@@ -1,0 +1,20 @@
+name: Automasi Clipper Senyap
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Bot berjalan otomatis setiap 6 jam
+  workflow_dispatch: # Agar kamu bisa mengetes bot secara manual kapan saja
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout kode
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Install Library
+        run: pip install instaloader
+      - name: Jalankan Bot Panen
+        run: python bot.py
